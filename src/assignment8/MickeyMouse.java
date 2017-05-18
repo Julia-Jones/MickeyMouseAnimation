@@ -67,8 +67,23 @@ public class MickeyMouse extends JComponent {
         g.fillOval(390,310,15,15);
         g.fillOval(490,310,15,15);
         
-        //skin above nose
-        g.drawArc(410, 360, 60, 90, 0, 180);
+        //Nose
+        g.setColor(Color.BLACK);
+        g.drawArc(375, 375, 135, 60, 0, 180);
+        g.setColor(Skin);
+        g.fillOval(375, 376, 135, 60);
+        g.setColor(Color.BLACK);
+        g.fillOval(392, 385 ,100, 50);
+        g.setColor(Color.WHITE);
+        g.fillOval(440, 390, 30, 15);
+        
+        //Smile 
+        g.setColor(Color.BLACK);
+        g.drawArc(320, 400, 250, 80, 180, 180);
+        
+        //moving the ears 
+        
+        
         
         
         // GAME DRAWING ENDS HERE
