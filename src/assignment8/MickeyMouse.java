@@ -29,6 +29,10 @@ public class MickeyMouse extends JComponent {
 
     // GAME VARIABLES WOULD GO HERE
  Color Skin = new Color(224,178,143);
+ 
+ //variable 
+ int ears = 200;
+ int earsDirection = 1;
 
 
     // GAME VARIABLES END HERE   
@@ -45,8 +49,9 @@ public class MickeyMouse extends JComponent {
         
         //base of the face
         g.setColor(Color.BLACK);
-        g.fillOval(200,50,180,180);
-        g.fillOval(500,50,180,180);
+        //ears
+        g.fillOval(ears,50,180,180);
+        g.fillOval(ears + 300,50,180,180);
         g.fillOval(240,140,400,400);
         
         //inner layer of the face
@@ -116,6 +121,18 @@ public class MickeyMouse extends JComponent {
 
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
+            
+            
+            if (ears <= 150){
+              earsDirection = +1;
+            }
+            if (ears >= 200){
+                earsDirection = -1;
+            }
+            
+            ears = earsDirection + ears;
+            
+            
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
             repaint();
