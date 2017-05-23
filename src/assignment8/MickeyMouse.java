@@ -25,16 +25,20 @@ public class MickeyMouse extends JComponent {
     long desiredFPS = 60;
     long desiredTime = (1000) / desiredFPS;
     // GAME VARIABLES WOULD GO HERE
+    
     // creating the skin colour
     Color Skin = new Color(224, 178, 143);
+    //background colour
     Color back = new Color(183, 255, 224);
-    //variable for ears
+    
+    //variable for ears and eyes
     int ears = 200;
     int eyesY = 300;
     int eyesDirection = 1;
     int earsDirection = 1;
 
-    // GAME VARIABLES END HERE   
+    // GAME VARIABLES END HERE
+    
     // drawing of the game happens in here
     // we use the Graphics object, g, to perform the drawing
     // NOTE: This is already double buffered!(helps with framerate/speed)
@@ -44,11 +48,13 @@ public class MickeyMouse extends JComponent {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE 
+        
+        //background 
         g.setColor(back);
         g.fillRect(0, 0, 900, 600);
-        //base of the face
+        
+        //base of the face and ears
         g.setColor(Color.BLACK);
-        //ears
         g.fillOval(ears, 50, 180, 180);
         g.fillOval(ears + 300, 50, 180, 180);
         g.fillOval(240, 140, 400, 400);
@@ -114,7 +120,7 @@ public class MickeyMouse extends JComponent {
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
 
-            //moving the ears 
+            //moving the ears left to right
            if (ears <= 150) {
               earsDirection = +1;
            }
@@ -124,7 +130,7 @@ public class MickeyMouse extends JComponent {
 
           ears = earsDirection + ears;
 
-          //moving the eyes 
+          //moving the eyes up and down
             if (eyesY <= 280) {
                eyesDirection = 1;
            }
