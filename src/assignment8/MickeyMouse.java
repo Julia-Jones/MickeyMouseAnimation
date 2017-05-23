@@ -1,4 +1,3 @@
-
 package assignment8;
 
 import java.awt.Dimension;
@@ -18,25 +17,24 @@ import java.awt.event.MouseEvent;
 public class MickeyMouse extends JComponent {
 
     // Height and Width of our game
-    static final int WIDTH = 800;
+    static final int WIDTH = 900;
     static final int HEIGHT = 600;
-
     // sets the framerate and delay for our game
     // you just need to select an approproate framerate
+    
     long desiredFPS = 60;
     long desiredTime = (1000) / desiredFPS;
-
-
     // GAME VARIABLES WOULD GO HERE
- Color Skin = new Color(224,178,143);
- 
- //variable 
- int ears = 200;
- int earsDirection = 1;
-
+    // creating the skin colour
+    Color Skin = new Color(224, 178, 143);
+    Color back = new Color(183, 255, 224);
+    //variable for ears
+    int ears = 200;
+    int eyesY = 300;
+    int eyesDirection = 1;
+    int earsDirection = 1;
 
     // GAME VARIABLES END HERE   
-
     // drawing of the game happens in here
     // we use the Graphics object, g, to perform the drawing
     // NOTE: This is already double buffered!(helps with framerate/speed)
@@ -46,60 +44,54 @@ public class MickeyMouse extends JComponent {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE 
-        
+        g.setColor(back);
+        g.fillRect(0, 0, 900, 600);
         //base of the face
         g.setColor(Color.BLACK);
         //ears
-        g.fillOval(ears,50,180,180);
-        g.fillOval(ears + 300,50,180,180);
-        g.fillOval(240,140,400,400);
-        
+        g.fillOval(ears, 50, 180, 180);
+        g.fillOval(ears + 300, 50, 180, 180);
+        g.fillOval(240, 140, 400, 400);
+
         //inner layer of the face
         g.setColor(Skin);
-        g.fillOval(420,160,180,300);
-        g.fillOval(280,160,180,300);
-        g.fillOval(240,300,402,233);
-        g.fillOval(365,485,150,80);
-        
+        g.fillOval(420, 160, 180, 300);
+        g.fillOval(280, 160, 180, 300);
+        g.fillOval(240, 300, 402, 233);
+        g.fillOval(365, 485, 150, 80);
+
         //eyes 
         g.setColor(Color.WHITE);
-        g.fillOval(350,230,80,160);
-        g.fillOval(450,230,80,160);
+        g.fillOval(350, 230, 80, 160);
+        g.fillOval(450, 230, 80, 160);
         g.setColor(Color.BLACK);
-        g.fillOval(360,300,60,90);
-        g.fillOval(460,300,60,90);
+        g.fillOval(360, eyesY, 60, 90);
+        g.fillOval(460, eyesY, 60, 90);
         g.setColor(Color.WHITE);
-        g.fillOval(390,310,15,15);
-        g.fillOval(490,310,15,15);
-        
+        g.fillOval(390, eyesY + 10, 15, 15);
+        g.fillOval(490, eyesY + 10, 15, 15);
+
         //Nose
         g.setColor(Color.BLACK);
         g.drawArc(375, 375, 135, 60, 0, 180);
         g.setColor(Skin);
         g.fillOval(375, 376, 135, 60);
         g.setColor(Color.BLACK);
-        g.fillOval(392, 385 ,100, 50);
+        g.fillOval(392, 385, 100, 50);
         g.setColor(Color.WHITE);
         g.fillOval(440, 390, 30, 15);
-        
+
         //Smile 
         g.setColor(Color.BLACK);
         g.drawArc(320, 400, 250, 80, 180, 180);
-        
-        //moving the ears 
-        
-        
-        
-        
+
         // GAME DRAWING ENDS HERE
     }
 
-
     // This method is used to do any pre-setup you might need to do
     // This is run before the game loop begins!
-    public void  preSetup(){
-       // Any of your pre setup before the loop starts should go here
-
+    public void preSetup() {
+        // Any of your pre setup before the loop starts should go here
     }
 
     // The main game loop
@@ -121,18 +113,26 @@ public class MickeyMouse extends JComponent {
 
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
-            
-            
-            if (ears <= 150){
+
+            //moving the ears 
+           if (ears <= 150) {
               earsDirection = +1;
-            }
-            if (ears >= 200){
+           }
+           if (ears >= 250) {
                 earsDirection = -1;
-            }
-            
-            ears = earsDirection + ears;
-            
-            
+           }
+
+          ears = earsDirection + ears;
+
+          //moving the eyes 
+            if (eyesY <= 280) {
+               eyesDirection = 1;
+           }
+            if (eyesY >= 300) {
+              eyesDirection = -1;
+          }
+            eyesY = eyesDirection + eyesY;
+
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
             repaint();
@@ -173,11 +173,11 @@ public class MickeyMouse extends JComponent {
         frame.pack();
         // shows the window to the user
         frame.setVisible(true);
-        
+
         // add listeners for keyboard and mouse
         frame.addKeyListener(new Keyboard());
         game.addMouseListener(new Mouse());
-        
+
         // starts the game loop
         game.run();
     }
@@ -185,36 +185,33 @@ public class MickeyMouse extends JComponent {
     // Used to implement any of the Mouse Actions
     private static class Mouse extends MouseAdapter {
         // if a mouse button has been pressed down
+
         @Override
-        public void mousePressed(MouseEvent e){
-            
+        public void mousePressed(MouseEvent e) {
         }
-        
+
         // if a mouse button has been released
         @Override
-        public void mouseReleased(MouseEvent e){
-            
+        public void mouseReleased(MouseEvent e) {
         }
-        
+
         // if the mouse has moved positions
         @Override
-        public void mouseMoved(MouseEvent e){
-            
+        public void mouseMoved(MouseEvent e) {
         }
     }
-    
+
     // Used to implements any of the Keyboard Actions
-    private static class Keyboard extends KeyAdapter{
+    private static class Keyboard extends KeyAdapter {
         // if a key has been pressed down
+
         @Override
-        public void keyPressed(KeyEvent e){
-            
+        public void keyPressed(KeyEvent e) {
         }
-        
+
         // if a key has been released
         @Override
-        public void keyReleased(KeyEvent e){
-            
+        public void keyReleased(KeyEvent e) {
         }
     }
 }
